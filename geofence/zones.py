@@ -9,14 +9,3 @@ class Zone:
 
         def contains(self, location:Location)-> bool:
             ...
-
-
-
-
-
-
-
-  
-
-    
-
