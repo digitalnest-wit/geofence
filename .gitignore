@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+
+# cache and test script
+__pycache__/
+*test.py
