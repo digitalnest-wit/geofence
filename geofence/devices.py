@@ -6,4 +6,4 @@ class Device:
         self.current_location = location
     
     def update_location(self, location:Location):
-        ...
+        self.current_location=location 
