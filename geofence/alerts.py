@@ -11,4 +11,5 @@ class Alert:
         self.alert_type = alert_type
 
     def notify(self):
-        pass
+        msg = f'ALERT! {self.device.id!r} {self.alert_type} {self.zone.name!r} at {self.date_time}'
+        print(msg)
