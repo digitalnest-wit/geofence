@@ -27,7 +27,15 @@ class System:
     def alerts(self):
         return self.__alerts
     
-    def update_device__location(self,location: Location):
+    def register_device(self, device: Device):
+        self.__device_registry.append(device)
+
+    
+    def register_zone(self, zone: Zone):
+        self.__zone_registry.append(zone)
+
+
+    def update_device_location(self,location: Location):
         ...
 
     def alert_logs(self ):
