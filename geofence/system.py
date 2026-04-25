@@ -35,8 +35,38 @@ class System:
         self.__zone_registry.append(zone)
 
 
-    def update_device_location(self,location: Location):
-        ...
+    def update_device_location(self,location: Location, device: Device):
+        zones_before  = []
+        for zone in self.__zone_registry: 
+            if zone.contains(device.current_location):
+                zones_before.append(zone)
+        device.update_location(location)
+        zones_after = [] 
+        for zone in self.__zone_registry:
+            if zone.contains(device.current_location):
+                zones_after.append(zone)
+    
+        device.update_location(location)
+
+        # get the zones AFTER updating device lcoation 
+        zone_after = []
+        for zone in self.__zone_registry:
+            if zone.contains(device.current_location):
+                zones_after.append(zone)
+        
+        # create alerts for each new zone the device ENTERED
+        for zone in zones_after:
+            if zone not in zones_before:
+                alert = Alert(device, zone, alert_type='entered')
+                self.__alerts.append(alert)
+                alert.notify()
+
+        # create alerts for each new zone the device EXITED
+        for zone in zones_before:
+            if zone not in zones_after:
+                alert = Alert(device, zone, alert_type='exited')
+                self.__alerts.append(alert)
+                alert.notify()          
 
     def alert_logs(self ):
         ...
